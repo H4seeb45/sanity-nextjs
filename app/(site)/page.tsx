@@ -25,7 +25,10 @@ export default async function Home() {
                 {Object.entries(data.socialLinks)
                   .sort()
                   .map(([key, value], id) => (
-                    <div className="flex column items-center justify-center">
+                    <div
+                      className="flex column items-center justify-center"
+                      key={id}
+                    >
                       <li key={id}>
                         <a
                           href={value}
