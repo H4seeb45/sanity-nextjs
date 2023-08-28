@@ -35,6 +35,7 @@ export default async function Home() {
                           {/* {key[0].toUpperCase() + key.toLowerCase().slice(1)} */}
                           {id === 0 ? (
                             <Image
+                              key={id}
                               className="rounded-xl border border-zinc-800 bg-white p-2 hover:bg-blue-200"
                               width={50}
                               height={50}
@@ -43,6 +44,7 @@ export default async function Home() {
                             />
                           ) : (
                             <Image
+                              key={id}
                               className="rounded-xl border border-blue-900 bg-white px-2 hover:bg-blue-200"
                               width={100}
                               height={50}
