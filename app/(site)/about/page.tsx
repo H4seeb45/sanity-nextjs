@@ -27,7 +27,7 @@ export default async function About() {
               <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
                 <div>
                   <Image
-                    className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-[#1d1d20]"
+                    className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-[#1d1d20] object-top"
                     src={data.profileImage.image}
                     width={400}
                     height={400}

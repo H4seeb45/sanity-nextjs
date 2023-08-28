@@ -5,7 +5,7 @@ import { schemaTypes } from './schemas'
 
 export default defineConfig({
     name: 'default',
-    title: 'Sanity Next.js Portfolio',
+    title: "Haseeb Ahmed's Portfolio",
 
     projectId: 'habcp4w2',
     dataset: 'production',
