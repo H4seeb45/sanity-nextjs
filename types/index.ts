@@ -41,3 +41,17 @@ export type ProjectType = {
     };
     description: PortableTextBlock[];
 };
+
+export type BlogType = {
+    _id: string;
+    name: string;
+    slug: string;
+    tagline: string;
+    projectUrl: string;
+    logo: string;
+    coverImage: {
+        alt: string | null;
+        image: string;
+    };
+    description: PortableTextBlock[];
+};

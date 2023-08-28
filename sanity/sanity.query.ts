@@ -52,9 +52,39 @@ export async function getProjects() {
     );
 }
 
+export async function getBlogs() {
+    return client.fetch(
+        groq`*[_type == "blog"]{
+        _id,
+        name,
+        "slug": slug.current,
+        tagline,
+        "logo": logo.asset->url,
+      }`, {
+        cache: 'no-cache'
+    }
+    );
+}
+
 export async function getSingleProject(slug: string) {
     return client.fetch(
         groq`*[_type == "project" && slug.current == $slug][0]{
+        _id,
+        name,
+        projectUrl,
+        coverImage { alt, "image": asset->url },
+        tagline,
+        description
+      }`, {
+        slug,
+        cache: 'no-cache'
+    }
+    );
+}
+
+export async function getSingleBlog(slug: string) {
+    return client.fetch(
+        groq`*[_type == "blog" && slug.current == $slug][0]{
         _id,
         name,
         projectUrl,

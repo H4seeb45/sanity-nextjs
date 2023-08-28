@@ -1,42 +1,42 @@
 import Image from "next/image";
 import { Metadata } from "next";
-import { getSingleProject } from "@/sanity/sanity.query";
-import type { ProjectType } from "@/types";
+import { getSingleBlog, getSingleProject } from "@/sanity/sanity.query";
+import type { BlogType } from "@/types";
 import { PortableText } from "@portabletext/react";
 import fallBackImage from "@/public/project.png";
 
 type Props = {
   params: {
-    project: string;
+    blog: string;
   };
 };
 
 // Dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.project;
-  const project: ProjectType = await getSingleProject(slug);
+  const slug = params.blog;
+  const blog: BlogType = await getSingleBlog(slug);
 
   return {
-    title: `${project.name} | Project`,
-    description: project.tagline,
+    title: `${blog.name} | Blog`,
+    description: blog.tagline,
     openGraph: {
-      images: project.coverImage?.image || "add-a-fallback-project-image-here",
-      title: project.name,
-      description: project.tagline,
+      images: blog.coverImage?.image || "add-a-fallback-blog-image-here",
+      title: blog.name,
+      description: blog.tagline,
     },
   };
 }
 
-export default async function Project({ params }: Props) {
-  const slug = params.project;
-  const project: ProjectType = await getSingleProject(slug);
+export default async function Blog({ params }: Props) {
+  const slug = params.blog;
+  const blog: BlogType = await getSingleProject(slug);
 
   return (
     <main className="max-w-6xl mx-auto lg:px-16 px-8">
       <div className="max-w-3xl mx-auto">
         <div className="flex items-start justify-between mb-4">
           <h1 className="font-bold lg:text-5xl text-3xl lg:leading-tight mb-4">
-            {project.name}
+            {blog.name}
           </h1>
 
           {/* <a
@@ -52,12 +52,12 @@ export default async function Project({ params }: Props) {
           className="rounded-xl border border-zinc-800"
           width={900}
           height={460}
-          src={project.coverImage?.image || fallBackImage}
-          alt={project.coverImage?.alt || project.name}
+          src={blog.coverImage?.image || fallBackImage}
+          alt={blog.coverImage?.alt || blog.name}
         />
 
         <div className="flex flex-col gap-y-6 mt-8 leading-7 text-zinc-400">
-          <PortableText value={project.description} />
+          <PortableText value={blog.description} />
         </div>
       </div>
     </main>
