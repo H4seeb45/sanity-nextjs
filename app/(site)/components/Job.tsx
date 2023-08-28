@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { getJob } from "@/sanity/sanity.query";
 import type { JobType } from "@/types";
+import { PortableText } from "@portabletext/react";
 
 export default async function Job() {
   const job: JobType[] = await getJob();
-
   return (
     <section className="mt-32">
       <div className="mb-16">
@@ -38,7 +38,10 @@ export default async function Job() {
                   ? data.endDate?.toString()
                   : "Current"}
               </small>
-              <p className="text-base text-zinc-400 my-4">{data.description}</p>
+              <div className="text-base text-zinc-400 my-4">
+                <PortableText value={data.description} />
+              </div>
+              {/* <p className="text-base text-zinc-400 my-4">{data.description}</p> */}
             </div>
           </div>
         ))}

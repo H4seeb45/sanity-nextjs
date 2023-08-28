@@ -1,7 +1,7 @@
 import { groq } from "next-sanity";
 import client from "./sanity.client";
 
-const revalidate = 60
+const revalidate = 60;
 export async function getProfile() {
     return client.fetch(
         groq`*[_type == "profile"]{

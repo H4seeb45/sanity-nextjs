@@ -31,9 +31,9 @@ const job = {
         {
             name: "description",
             title: "Job Description",
-            type: "text",
-            rows: 3,
+            type: "array",
             description: "Write a brief description about this role",
+            of: [{ type: "block" }],
         },
         {
             name: "startDate",
