@@ -1,6 +1,7 @@
 import { groq } from "next-sanity";
 import client from "./sanity.client";
 
+const revalidate = 60
 export async function getProfile() {
     return client.fetch(
         groq`*[_type == "profile"]{
@@ -15,7 +16,7 @@ export async function getProfile() {
       "resumeURL": resumeURL.asset->url,
       socialLinks,
       skills
-    }`
+    }`, { next: { revalidate } }
     );
 }
 
@@ -30,7 +31,7 @@ export async function getJob() {
         description,
         startDate,
         endDate,
-      }`
+      }`, { next: { revalidate } }
     );
 }
 
@@ -42,7 +43,7 @@ export async function getProjects() {
         "slug": slug.current,
         tagline,
         "logo": logo.asset->url,
-      }`
+      }`, { next: { revalidate } }
     );
 }
 
@@ -55,7 +56,6 @@ export async function getSingleProject(slug: string) {
         coverImage { alt, "image": asset->url },
         tagline,
         description
-      }`,
-        { slug }
+      }`, { slug, next: { revalidate } }
     );
 }
