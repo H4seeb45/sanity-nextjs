@@ -15,7 +15,6 @@ export default async function Blog() {
         {/* <p className="text-base text-zinc-400 leading-relaxed">
           You can check
         </p> */}
-        {blogs.length}
       </section>
 
       <section className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5 mb-12">

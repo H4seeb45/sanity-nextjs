@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Metadata } from "next";
-import { getSingleBlog, getSingleProject } from "@/sanity/sanity.query";
+import { getSingleBlog } from "@/sanity/sanity.query";
 import type { BlogType } from "@/types";
 import { PortableText } from "@portabletext/react";
 import fallBackImage from "@/public/project.png";
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Blog({ params }: Props) {
   const slug = params.blog;
-  const blog: BlogType = await getSingleProject(slug);
+  const blog: BlogType = await getSingleBlog(slug);
 
   return (
     <main className="max-w-6xl mx-auto lg:px-16 px-8">
