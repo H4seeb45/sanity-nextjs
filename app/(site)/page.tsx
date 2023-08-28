@@ -2,6 +2,9 @@ import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import HeroSvg from "./icons/HeroSvg";
 import Job from "./components/Job";
+import gitHubImage from "@/public/GitHub_Logo.svg";
+import linkedInImage from "@/public/Linkedin-Logo.png";
+import Image from "next/image";
 
 export default async function Home() {
   const profile: ProfileType[] = await getProfile();
@@ -22,15 +25,34 @@ export default async function Home() {
                 {Object.entries(data.socialLinks)
                   .sort()
                   .map(([key, value], id) => (
-                    <li key={id}>
-                      <a
-                        href={value}
-                        rel="noreferer noopener"
-                        className="flex items-center gap-x-3 mb-5 hover:text-purple-400 duration-300"
-                      >
-                        {key[0].toUpperCase() + key.toLowerCase().slice(1)}
-                      </a>
-                    </li>
+                    <div className="flex column items-center justify-center">
+                      <li key={id}>
+                        <a
+                          href={value}
+                          rel="noreferer noopener"
+                          className="flex items-center gap-x-3 mb-5 hover:text-purple-400 duration-300"
+                        >
+                          {/* {key[0].toUpperCase() + key.toLowerCase().slice(1)} */}
+                          {id === 0 ? (
+                            <Image
+                              className="rounded-xl border border-zinc-800 bg-white p-2 hover:bg-blue-200"
+                              width={50}
+                              height={50}
+                              src={gitHubImage}
+                              alt={"github logo"}
+                            />
+                          ) : (
+                            <Image
+                              className="rounded-xl border border-blue-900 bg-white px-2 hover:bg-blue-200"
+                              width={100}
+                              height={50}
+                              src={linkedInImage}
+                              alt={"linkedin logo"}
+                            />
+                          )}
+                        </a>
+                      </li>
+                    </div>
                   ))}
               </ul>
             </div>
